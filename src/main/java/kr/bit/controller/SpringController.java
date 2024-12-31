@@ -17,15 +17,48 @@ import java.util.Map;
 @Controller
 public class SpringController {
 
-    @PostMapping("/t1")
-    public String t1(@ModelAttribute Data data){
 
-
-        return "/test1";
+    @GetMapping("/t1")
+    public String t1(Data data){ //경로
+        data.setId("123");
+        data.setName("신동억");
+        data.setPw("123");
+        data.setAdr1("우리");
+        data.setAdr2("너네");
+        return "test1";
     }
 
-    @PostMapping("t2")
-    public String t2(@ModelAttribute("test") Data data){
+    @GetMapping("/t2")
+    public String t2(Data data){
+        data.setId("1234");
+        data.setName("신동웩");
+        data.setPw("1234");
+        data.setAdr1("서울");
+        data.setAdr2("강남");
         return "test2";
     }
+
+    @GetMapping("/t3")
+    public String t3(@ModelAttribute("modelBean") Data data){
+        data.setId("댕");
+        data.setName("김동익");
+        data.setPw("12");
+        data.setAdr1("서울");
+        data.setAdr2("노랑진");
+        return "test3";
+    }
+
+    @GetMapping("/t4")
+    public String t4(Model model){
+        Data data = new Data();
+        data.setId("sd");
+        data.setName("김동s익");
+        data.setPw("12sd");
+        data.setAdr1("서울");
+        data.setAdr2("노랑진");
+        model.addAttribute("modelBean",data);
+        return "test4";
+    }
+
+
 }

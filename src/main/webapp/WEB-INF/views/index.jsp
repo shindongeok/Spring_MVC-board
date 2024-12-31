@@ -5,6 +5,9 @@ pageEncoding="UTF-8"%>
 <body>
    <a href="t1?data1=10&data2=20&data3=30&data3=40">test1</a><br>
 
+   <a href="t2?data1=10&data2=20&data3=30&data3=40">test2</a><br>
+
+
 
 </body>
 </html>

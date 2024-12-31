@@ -3,7 +3,9 @@ pageEncoding="UTF-8"%>
 <head>
 </head>
 <body>
-    <h1>스프링2</h1>
+
+    ${param.data1}<br>
+    ${param.data2}<br>
 
 </body>
 </html>

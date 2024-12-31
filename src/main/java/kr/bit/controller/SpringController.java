@@ -1,29 +1,32 @@
 package kr.bit.controller;
 
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-//사용자 요청이 들어오면(/spring1, get 방식))
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class SpringController {
-    // 클라이언트가 요청하는 경로
-    @RequestMapping(value="/spring1", method = RequestMethod.GET)
-    public String spring1(){
-        //뷰로 보여줄 주소
-        return "spring1";
+
+    @GetMapping("/t1")
+    public String t1(HttpServletRequest request){
+        String data1=request.getParameter("data1");
+        String data2=request.getParameter("data2");
+        String data3[]=request.getParameterValues("data3");
+
+        System.out.println(data1);
+        System.out.println(data2);
+        for(String str : data3){
+            System.out.println(str);
+        }
+
+        return "final";
     }
 
-    @RequestMapping(value="/spring2", method = RequestMethod.GET)
-    public String spring2(){
-        return "spring2";
-    }
-
-    @RequestMapping(value = "/sub1/spring3", method = RequestMethod.GET)
-    public String spring3(){
-        return "/sub1/spring3";
-    }
-    @RequestMapping(value = "/sub1/spring4", method = RequestMethod.GET)
-    public String spring4(){
-        return "/sub1/spring4";
-    }
 }

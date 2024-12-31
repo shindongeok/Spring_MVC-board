@@ -3,7 +3,9 @@ pageEncoding="UTF-8"%>
 <head>
 </head>
 <body>
-    <h1>스프링3</h1>
+
+    ${requestScope.data1}<br>
+    ${data2}<br>
 
 </body>
 </html>

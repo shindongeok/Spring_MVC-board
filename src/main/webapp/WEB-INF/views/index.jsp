@@ -3,11 +3,16 @@ pageEncoding="UTF-8"%>
 <head>
 </head>
 <body>
-   <a href="t1?data1=10&data2=20&data3=30&data3=40">test1</a><br>
+  <form action="t1" method="post">
+    d1 : <input type="text" name="str1"/><br>
+    d2 : <input type="text" name="str2"/><br>
+    <button type="submit">check</button>
+  </form>
 
-   <a href="t2?data1=10&data2=20&data3=30&data3=40">test2</a><br>
-
-
-
+  <form action="t2" method="post">
+      d1 : <input type="text" name="str1"/><br>
+      d2 : <input type="text" name="str2"/><br>
+      <button type="submit">check</button>
+    </form>
 </body>
 </html>

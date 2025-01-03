@@ -1,5 +1,7 @@
 package kr.bit.beans;
 
+
+
 @lombok.Data
 public class Data {
 

@@ -47,10 +47,18 @@ public class SpringController {
                 for(String s:str){
                     System.out.println(s);
                 }
+                if(str[0].equals("Size.data.num2")){
+                    System.out.println("num2 글자수 졷나 잘못됨!! 다시작서앟세요!");
+                }
+                else if(str[0].equals("Max.data.num1")){
+                    System.out.println("num1 값 최대 100이야 다시작성해!");
+                }
             }
+            return "test1"; //유효성 검사 위배되면 다시 form형태로 감
         }
-        return "test1";
+        return "test2"; // 유효성검사에 맞으면 test2.jsp가서 내가 입력한 값을 띄운다.
     }
+
 
 
 }

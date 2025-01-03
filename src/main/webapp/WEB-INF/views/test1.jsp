@@ -9,7 +9,7 @@
         num1 : <input type="text" name="num1"><br>  <!-- 바인딩 대상객체 (ata 의 필드에 매핑) -->
         <spring:hasBindErrors name="data"> <!-- 에러확인 후 표시 => errors에 담겨져 있음 -->
             <c:if test="${errors.hasFieldErrors('num1')}"> <!-- num1필드에 에러가 있는지 확인 -->
-                ${errors.getFieldError('num1').defaultMessage} <br> <!-- 기분 에러메세지 출력 -->
+                <p  style="color:red;">${errors.getFieldError('num1').defaultMessage}</p> <br> <!-- 기분 에러메세지 출력 -->
             </c:if>
         </spring:hasBindErrors>
 

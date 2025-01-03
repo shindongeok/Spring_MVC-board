@@ -5,8 +5,13 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 
-test1
+${sbean.str1}
+${sbean.str2}
+${sbean2.str1}
+${sbean2.str2}
 
+${requestScope.sbean.str1}
+${requestScope.sbean.str2}
 
 </body>
 </html>

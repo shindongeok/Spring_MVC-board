@@ -5,7 +5,8 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 
-test1
+${sessionScope.bean.str1}
+${sessionScope.bean.str2}
 
 
 </body>

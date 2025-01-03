@@ -9,7 +9,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("kr.bit.controller, kr.bit.beans")
+@ComponentScan("kr.bit.controller")
+@ComponentScan("kr.bit.beans")
 public class ServletAppContext implements WebMvcConfigurer {
 
     // viewResolver 설정

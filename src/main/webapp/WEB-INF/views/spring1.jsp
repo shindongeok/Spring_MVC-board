@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 
-test1
+${data1}
 
 
 </body>

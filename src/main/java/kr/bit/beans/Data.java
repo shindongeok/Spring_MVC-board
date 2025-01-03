@@ -1,29 +1,16 @@
 package kr.bit.beans;
 
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 @lombok.Data
 public class Data {
 
-    private String str1;
-    private String str2;
+    @Max(100)
+    private int num1;
 
-
-//    public String getStr1() {
-//        return str1;
-//    }
-//
-//    public void setStr1(String str1) {
-//        this.str1 = str1;
-//    }
-//
-//    public String getStr2() {
-//        return str2;
-//    }
-//
-//    public void setStr2(String str2) {
-//        this.str2 = str2;
-//    }
+    @Size(min=4, max=10)
+    private String num2;
 
 
 }

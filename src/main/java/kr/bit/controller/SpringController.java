@@ -1,48 +1,56 @@
 package kr.bit.controller;
 
 
+
+
+
 import kr.bit.beans.Data;
-import kr.bit.beans.Data2;
-import kr.bit.beans.Data3;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.Locale;
 
 @Controller
 public class SpringController {
 
-    @Autowired
-    Data data1;  //RootAppContext에 Bean으로 등록한 Data주소값을 자동주입받고있다.(session영역)
-
-    @Resource(name = "session2")
-    Data2 data2;
-
-    @Autowired
-    Data3 data3;
-
-
     @GetMapping("/t1")
     public String t1(){
-        data1.setStr1("aa");
-        data1.setStr2("bb");
-        data2.setStr3("cc");
-        data2.setStr4("dd");
-        data3.setStr5("ee");
-        data3.setStr6("ff");
-
         return "test1";
     }
 
-    @GetMapping("/s1")
-    public String s1(Model model){
-        model.addAttribute("data1",data1);
-        model.addAttribute("data2",data2);
-        model.addAttribute("data3",data3);
-        return "spring1";
+    @PostMapping("test1_proc") //form에 쓴 값이 주입됨
+    public String test1_proc(@Valid Data data, BindingResult result){
+        //@Valid : 메소드에 주입받는 Bean에 유효성 검사를 하겠다는 선언!!!
+        //BindingResult : 유효성 검사를 실행한 결과정보가 저장되어 있음 -> jsp파일
+
+        //코드.이름.메세지
+        if(result.hasErrors()){
+            for(ObjectError obj: result.getAllErrors()){
+                System.out.println("코드 : " + obj.getCode());
+                System.out.println("이름 : " + obj.getObjectName());
+                System.out.println("메세지 : " + obj.getDefaultMessage());
+
+                String []str = obj.getCodes();  //str[0] : 코드.이름.필드명
+                                                //str[1] : 코드.필드명
+                                                //str[2] : 코드.자료형
+                                                //str[3] : 코드
+                for(String s:str){
+                    System.out.println(s);
+                }
+            }
+        }
+        return "test1";
     }
+
 
 }

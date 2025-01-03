@@ -1,50 +1,27 @@
 package kr.bit.beans;
 
+
 public class Data {
 
-    private String name;
-    private String id;
-    private String pw;
-    private String adr1;
-    private String adr2;
+    private String str1;
+    private String str2;
 
-    public String getName() {
-        return name;
+
+    public String getStr1() {
+        return str1;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStr1(String str1) {
+        this.str1 = str1;
     }
 
-    public String getId() {
-        return id;
+    public String getStr2() {
+        return str2;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStr2(String str2) {
+        this.str2 = str2;
     }
 
-    public String getPw() {
-        return pw;
-    }
 
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public String getAdr1() {
-        return adr1;
-    }
-
-    public void setAdr1(String adr1) {
-        this.adr1 = adr1;
-    }
-
-    public String getAdr2() {
-        return adr2;
-    }
-
-    public void setAdr2(String adr2) {
-        this.adr2 = adr2;
-    }
 }

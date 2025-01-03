@@ -18,47 +18,13 @@ import java.util.Map;
 public class SpringController {
 
 
-    @GetMapping("/t1")
-    public String t1(Data data){ //경로
-        data.setId("123");
-        data.setName("신동억");
-        data.setPw("123");
-        data.setAdr1("우리");
-        data.setAdr2("너네");
+    @GetMapping("t1")
+    public String t1(Data data){
+        data.setStr1("str1");
+        data.setStr2("str2");
+        data.setStr3("str3");
+        data.setStr4("str4");
         return "test1";
     }
-
-    @GetMapping("/t2")
-    public String t2(Data data){
-        data.setId("1234");
-        data.setName("신동웩");
-        data.setPw("1234");
-        data.setAdr1("서울");
-        data.setAdr2("강남");
-        return "test2";
-    }
-
-    @GetMapping("/t3")
-    public String t3(@ModelAttribute("modelBean") Data data){
-        data.setId("댕");
-        data.setName("김동익");
-        data.setPw("12");
-        data.setAdr1("서울");
-        data.setAdr2("노랑진");
-        return "test3";
-    }
-
-    @GetMapping("/t4")
-    public String t4(Model model){
-        Data data = new Data();
-        data.setId("sd");
-        data.setName("김동s익");
-        data.setPw("12sd");
-        data.setAdr1("서울");
-        data.setAdr2("노랑진");
-        model.addAttribute("modelBean",data);
-        return "test4";
-    }
-
 
 }

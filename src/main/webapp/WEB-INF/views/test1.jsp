@@ -1,18 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <head>
 </head>
 <body>
-<!-- 객체로 저장된 필드값 가져올 때 클래스명 맨 앞글자느 소문자 -->
-id : ${data.id}<br>
-name : ${data.name}<br>
-pw : ${data.pw}<br>
-adr1 : ${data.adr1}<br>
-adr2 : ${data.adr2}<br>
 
-<form action="final" method="post">
-    <input type="text" name="id" value="${data.id}"/>
-    <button type="submit">check</button>
-</form>
-</body><br>
+<form:form modelAttribute="data">
+    1 : <form:hidden path="str1"/><br><!-- path이름과 설정한 필드명이 같아야함 -->
+    2 : <form:input path="str2"/><br>
+    3 : <form:password path="str3" showPassword="true" /><br> <!-- 무시 -->
+    4 : <form:textarea path="str4"/><br>
+    5 : <form:button disabled="true">체크</form:button>
+</form:form>
+
+
+</body>
 </html>

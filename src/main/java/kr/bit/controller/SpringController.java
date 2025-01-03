@@ -75,4 +75,8 @@ public class SpringController {
        return "spring5";
     }
 
+    @GetMapping("/s4")  //저장
+    public String s4(@SessionAttribute("bean") Data data){
+       return "spring4";
+    }
 }

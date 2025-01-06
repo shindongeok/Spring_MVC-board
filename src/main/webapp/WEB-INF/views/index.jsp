@@ -4,8 +4,8 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 
-<a href="input_test">input_test</a> <br>
-<a href="read_test">read_test</a> <br>
+<a href="t1">test1</a> <br>
+<a href="t2">test2</a> <br>
 
 
 

@@ -1,17 +1,15 @@
 package kr.bit.config;
 
-import kr.bit.database.MapperInterface;
-import kr.bit.interceptor.*;
+
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
@@ -65,15 +63,15 @@ public class ServletAppContext implements WebMvcConfigurer {
         return factory; //sql실행, 매핑 인터페이스 처리
     }
 
-    //mybatis 인터페이스 스프링에 빈으로 등록
-    @Bean
-    public MapperFactoryBean<MapperInterface> test_mapper(SqlSessionFactory factory) throws Exception{
-        MapperFactoryBean<MapperInterface> fac =
-                new MapperFactoryBean<MapperInterface>(MapperInterface.class);
-
-        fac.setSqlSessionFactory(factory);
-        return fac;
-    }
+//    //mybatis 인터페이스 스프링에 빈으로 등록
+//    @Bean
+//    public MapperFactoryBean<MapperInterface> test_mapper(SqlSessionFactory factory) throws Exception{
+//        MapperFactoryBean<MapperInterface> fac =
+//                new MapperFactoryBean<MapperInterface>(MapperInterface.class);
+//
+//        fac.setSqlSessionFactory(factory);
+//        return fac;
+//    }
 
 
 

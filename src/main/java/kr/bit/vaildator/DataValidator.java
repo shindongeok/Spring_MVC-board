@@ -21,23 +21,39 @@ public class DataValidator implements Validator {
     @Override   //유효성 검사하는 핵심 메소드
     public void validate(Object target, Errors errors){
 
-        ValidationUtils.rejectIfEmpty(errors, "num2", "error2");
-        //num2가 empty 면 에러이름을 error2로 함
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "num3", "error3");
-        //num2가 empty or 공백문자만 있다면 에러이름을 error3로 함
-                    //다운 케스팅
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "error1");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rrNumber1", "error2");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rrNumber2", "error3");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "error4");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pw", "error5");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pw2", "error6");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email1", "error7");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email2", "error8");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "post", "error9");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "addr", "error10");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "addr2", "error11");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tel", "error12");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "job", "error13");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "smsClick", "error14");
+
+
+
+
         Data data=(Data) target;    //유효성 검사할 객체
 
-        String str1 = data.getNum2();
-        String str2 = data.getNum3();
+        String rrNumber1 = data.getRrNumber1();
+        String rrNumber2 = data.getRrNumber2();
 
-        if(str1.length() > 5){
-            errors.rejectValue("num2", "error4");
+        if(rrNumber1.length() != 6){
+            errors.rejectValue("rrNumber1", "error15");
             //num2길이가 5자리 넘어가면 error4라는 이름으로 에러명 줌
         }
-        if(str2.contains("-")==false){
-            errors.rejectValue("num3","error5");
+        if(rrNumber2.length() != 7){
+            errors.rejectValue("rrNumber2", "error16");
         }
+//        if(str2.contains("-")==false){
+//            errors.rejectValue("num3","error5");
+//        }
 
     }
 

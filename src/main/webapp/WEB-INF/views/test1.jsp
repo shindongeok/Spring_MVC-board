@@ -6,14 +6,34 @@ pageEncoding="UTF-8"%>
 <body>
 
     <form:form action="test_proc" method="post" modelAttribute="data">
-        num1 : <form:input path="num1" type="text"/><br>
-               <form:errors path="num1"/><br>
 
-        num2 : <form:input path="num2" type="text"/><br>
-               <form:errors path="num2"/><br>
+        <div class="box_1">
+            <div class="box_1-1 userName"><label for="userName">이름</label></div>
+            <div class="box_1-">＊<form:input type="text" path="userName"/>
+                <br><form:errors path="userName"/>
+            </div>
+        </div>
 
-        num3 : <form:input path="num3" type="text"/><br>
-              <form:errors path="num3"/><br>
+
+        <div class="box_1">
+            <div class="box_1-1"><label for="rrNumber1">주민등록번호</label></div>
+            <div>＊<form:input type="text" path="rrNumber1" placeholder="앞 6자리"/> - <form:input type="text" path="rrNumber2" placeholder="뒤 7자리"/>
+                    <br><form:errors path="rrNumber1"/>
+                        <form:errors path="rrNumber2"/>
+            </div>
+        </div>
+
+        <div class="box_1">
+            <div class="box_1-1"><label for="userId">아이디</label></div>
+            <div>＊<form:input type="text" path="userId"/>
+                        <br><form:errors path="userId"/>
+            </div>
+        </div>
+
+
+
+
+
 
         <form:button type="submit">체크</form:button>
     </form:form>

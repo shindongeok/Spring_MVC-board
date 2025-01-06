@@ -1,27 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
 <head>
+    <title>Select Box Example</title>
 </head>
 <body>
-<!-- 적은 값이 Data클래스의 어노테이션 조건에 맞아야함 @size @max -->
-    <form action="test1_proc" method="post">
-        num1 : <input type="text" name="num1"><br>  <!-- 바인딩 대상객체 (ata 의 필드에 매핑) -->
-        <spring:hasBindErrors name="data"> <!-- 에러확인 후 표시 => errors에 담겨져 있음 -->
-            <c:if test="${errors.hasFieldErrors('num1')}"> <!-- num1필드에 에러가 있는지 확인 -->
-                <p  style="color:red;">${errors.getFieldError('num1').defaultMessage}</p> <br> <!-- 기분 에러메세지 출력 -->
-            </c:if>
-        </spring:hasBindErrors>
 
-        num2 : <input type="text" name="num2"><br>  <!-- 바인딩 대상객체 (ata 의 필드에 매핑) -->
-        <spring:hasBindErrors name="data"> <!-- 에러확인 후 표시 -->
-            <c:if test="${errors.hasFieldErrors('num2')}"> <!-- num1필드에 에러가 있는지 확인 -->
-                ${errors.getFieldError('num2').defaultMessage} <br> <!-- 기분 에러메세지 출력 -->
-            </c:if>
-        </spring:hasBindErrors>
+<form:form modelAttribute="data">
+    <!-- 첫 번째 셀렉트 박스 -->
+    <form:select path="s1">
+        <form:option value="d1">one</form:option>
+        <form:option value="d2">two</form:option>
+        <form:option value="d3">three</form:option>
+    </form:select>
 
-        <button type="submit">확인</button>
-    </form>
+    <!-- 두 번째 셀렉트 박스 -->
+    <form:select path="s2">
+        <form:options items="${requestScope.li1}"/>
+    </form:select>
+
+    <form:select path="s3">
+        <form:options items="${requestScope.li2}"/>
+    </form:select>
+
+    <form:select path="s4">
+        <form:options items="${requestScope.li3}" itemLabel="s1" itemValue="s2"/>
+    </form:select>
+    <br>
+    <!----------------------------------------------------->
+    <form:checkbox path="s5" value="d1"/>one
+    <form:checkbox path="s5" value="d2"/>two
+    <form:checkbox path="s5" value="d3"/>three <br>
+
+        <form:checkboxes items="${requestScope.li1}" path="s6"/><br>
+        <form:checkboxes items="${requestScope.li2}" path="s7"/><br>
+        <form:checkboxes items="${requestScope.li3}" itemLabel="s1" itemValue="s2" path="s8"/><br>
+
+        <form:radiobutton path="s9" value="d1"/>one
+        <form:radiobutton path="s9" value="d2"/>two
+        <form:radiobutton path="s9" value="d3"/>three <br>
+
+        <form:radiobuttons path="s10" items="${requestScope.li1}"/><br>
+        <form:radiobuttons path="s11" items="${requestScope.li2}"/><br>
+        <form:radiobuttons path="s12" items="${requestScope.li3}" itemLabel="s1" itemValue="s2"/><br>
+
+</form:form>
+
 </body>
 </html>
-

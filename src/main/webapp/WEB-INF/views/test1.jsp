@@ -15,15 +15,6 @@ pageEncoding="UTF-8"%>
         num3 : <form:input path="num3" type="text"/><br>
               <form:errors path="num3"/><br>
 
-        num4 : <form:input path="num4" type="text"/><br>
-               <form:errors path="num4"/><br>
-
-        num5 : <form:input path="num5" type="text"/><br>
-               <form:errors path="num5"/><br>
-
-       num6 : <form:input path="num6" type="text"/><br>
-              <form:errors path="num6"/><br>
-
         <form:button type="submit">체크</form:button>
     </form:form>
 

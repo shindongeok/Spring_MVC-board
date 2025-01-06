@@ -2,29 +2,40 @@ package kr.bit.controller;
 
 
 
+import kr.bit.beans.Data;
+import kr.bit.database.MapperInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class SpringController {
 
-    @GetMapping("/t1")
-    public String t1(){
-        return "test1";
+    @Autowired
+    MapperInterface mapperInterface;
+
+   @GetMapping("/input_test")
+    public String input_test(){
+       return "input_test";
+   }
+
+    @PostMapping("input_proc")
+    public String input_data(Data data){
+       mapperInterface.insert_data(data);   //db에 저장
+       return "input_proc";
     }
 
-    @GetMapping("/t2")
-    public String t2(){
-        return "test2";
-    }
+    @GetMapping("/read_test")
+    public String read_test(Model model){
+       List<Data> li = mapperInterface.select_data();
+       model.addAttribute("li",li);
 
-    @GetMapping("/s1/t3")
-    public String t3(){
-        return "test3";
-    }
 
-    @GetMapping("/s1/t4")
-    public String t4(){
-        return "test4";
+
+       return "read_test";
     }
 }

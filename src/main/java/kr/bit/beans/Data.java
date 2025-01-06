@@ -1,54 +1,31 @@
 package kr.bit.beans;
 
-
-import javax.validation.constraints.*;
-
-@lombok.Data
 public class Data {
+    private String num1;
+    private String num2;
+    private String num3;
 
+    public String getNum1() {
+        return num1;
+    }
 
-    @Pattern(regexp = "^[가-힣]+$", message = "한글만 가능합니다")
-    private String userName;
+    public void setNum1(String num1) {
+        this.num1 = num1;
+    }
 
+    public String getNum2() {
+        return num2;
+    }
 
-    private String rrNumber1;
-    private String rrNumber2;
+    public void setNum2(String num2) {
+        this.num2 = num2;
+    }
 
+    public String getNum3() {
+        return num3;
+    }
 
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "아이디는 영문만 가능합니다.")
-    @Size(min = 4, message = "아이디는 최소 4글자 이상이어야 합니다.")
-    private String userId;
-
-
-    @Pattern(regexp = "[a-zA-Z]")
-    private String pw;
-
-    private String pw2;
-
-
-    @Size(max=10)
-    private String email1;
-
-
-    private String Email2;
-
-
-    private String post;
-
-
-    @Pattern(regexp = "[가-힣]")
-    private String addr;
-
-
-    private String addr2;
-
-
-    @Pattern(regexp = "^\\d{2,3}-\\d{3,4}-\\d{4}$")
-    private String tel;
-
-    private String job;
-
-    private String smsClick;
-
-
+    public void setNum3(String num3) {
+        this.num3 = num3;
+    }
 }

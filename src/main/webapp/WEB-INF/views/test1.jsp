@@ -6,31 +6,23 @@ pageEncoding="UTF-8"%>
 <body>
 
     <form:form action="test_proc" method="post" modelAttribute="data">
-        num1 : <form:radiobutton path="num1" value="true"/> true
-               <form:radiobutton path="num1" value="false"/> false <br>
+        num1 : <form:input path="num1" type="text"/><br>
                <form:errors path="num1"/><br>
 
-        num2 : <form:radiobutton path="num2" value="true"/> true
-               <form:radiobutton path="num2" value="false"/> false <br>
+        num2 : <form:input path="num2" type="text"/><br>
                <form:errors path="num2"/><br>
 
         num3 : <form:input path="num3" type="text"/><br>
-               <form:errors path="num3"/><br>
+              <form:errors path="num3"/><br>
 
-        num4 : <form:checkbox path="num4" value="check1"/>check1<br>
+        num4 : <form:input path="num4" type="text"/><br>
                <form:errors path="num4"/><br>
 
-        num5 : <form:checkbox path="num5" value="check2"/>check1<br>
+        num5 : <form:input path="num5" type="text"/><br>
                <form:errors path="num5"/><br>
 
-        num6 : <form:input path="num6" type="text"/><br>
-               <form:errors path="num6"/><br>
-
-        num7 : <form:input path="num7" type="text"/><br>
-               <form:errors path="num7"/><br>
-
-        num8 : <form:input path="num8" type="text"/><br>
-               <form:errors path="num8"/><br>
+       num6 : <form:input path="num6" type="text"/><br>
+              <form:errors path="num6"/><br>
 
         <form:button type="submit">체크</form:button>
     </form:form>

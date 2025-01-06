@@ -5,104 +5,81 @@ import javax.validation.constraints.*;
 
 public class Data {
 
-    @AssertTrue //true가 아닌 값이 들어오면 오류
-    private  boolean num1;
+    @NotEmpty   //값의 길이가 0이면 오류발생(공백도 글자로 인식)
+    private String num1;
 
-    @AssertFalse //false가 아닌 값이 들어오면 오류
-    private  boolean num2;
+    @NotBlank   //공백제거하고 길이가 0이면 오류발생
+    private String num2;
 
-    @Max(200)
-    @Min(20)
-    private String num3;
+    @Positive   //양수아니면 오류
+    private int num3;
 
-    @Null   //값이 들어오면 오류
-    private String num4;
+    @PositiveOrZero //양수또는 0
+    private int num4;
 
-    @NotNull    //값이 들어오지 않으면 오류
-    private String num5;
+    @Negative
+    private int num5;
 
-    @Digits(integer = 3, fraction = 2)  //정수는 3, 실수 2자릿수
+    @Email  //@기호
     private String num6;
 
-    @Size(min=2, max=10)    //지정된 글자수보다 짧거나 길면 오류
-    private String num7;
-
-    @Pattern(regexp = "[a-zA-Z]*")
-    private String num8;
-
-    public Data(){
-        this.num1=true;
-        this.num2=false;
-        this.num3="50";
-        this.num4=null;
-        this.num5="spring";
-        this.num6="222.22";
-        this.num7="java";
+    private Data(){
+        this.num1="aa";
+        this.num2="aa";
+        this.num3=40;
+        this.num4=40;
+        this.num5=-3;
     }
 
-    @AssertTrue
-    public boolean isNum1() {
+    public @NotEmpty String getNum1() {
         return num1;
     }
 
-    public void setNum1(@AssertTrue boolean num1) {
+    public void setNum1(@NotEmpty String num1) {
         this.num1 = num1;
     }
 
-    @AssertFalse
-    public boolean isNum2() {
+    public @NotBlank String getNum2() {
         return num2;
     }
 
-    public void setNum2(@AssertFalse boolean num2) {
+    public void setNum2(@NotBlank String num2) {
         this.num2 = num2;
     }
 
-    public @Max(200) @Min(20) String getNum3() {
+    @Positive
+    public int getNum3() {
         return num3;
     }
 
-    public void setNum3(@Max(200) @Min(20) String num3) {
+    public void setNum3(@Positive int num3) {
         this.num3 = num3;
     }
 
-    public @Null String getNum4() {
+    @PositiveOrZero
+    public int getNum4() {
         return num4;
     }
 
-    public void setNum4(@Null String num4) {
+    public void setNum4(@PositiveOrZero int num4) {
         this.num4 = num4;
     }
 
-    public @NotNull String getNum5() {
+    @Negative
+    public int getNum5() {
         return num5;
     }
 
-    public void setNum5(@NotNull String num5) {
+    public void setNum5(@Negative int num5) {
         this.num5 = num5;
     }
 
-    public @Digits(integer = 3, fraction = 2) String getNum6() {
+    @Email
+    public String getNum6() {
         return num6;
     }
 
-    public void setNum6(@Digits(integer = 3, fraction = 2) String num6) {
+    public void setNum6(@Email String num6) {
         this.num6 = num6;
-    }
-
-    public @Size(min = 2, max = 10) String getNum7() {
-        return num7;
-    }
-
-    public void setNum7(@Size(min = 2, max = 10) String num7) {
-        this.num7 = num7;
-    }
-
-    public @Pattern(regexp = "[a-zA-Z]*") String getNum8() {
-        return num8;
-    }
-
-    public void setNum8(@Pattern(regexp = "[a-zA-Z]*") String num8) {
-        this.num8 = num8;
     }
 }

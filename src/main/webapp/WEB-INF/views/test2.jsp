@@ -4,8 +4,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 
-${data.num1}
-${data.num2}
+<h2>테스트2</h2>
 
 
 

@@ -1,52 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
 <head>
-    <title>Select Box Example</title>
 </head>
 <body>
 
-<form:form modelAttribute="data">
-    <!-- 첫 번째 셀렉트 박스 -->
-    <form:select path="s1">
-        <form:option value="d1">one</form:option>
-        <form:option value="d2">two</form:option>
-        <form:option value="d3">three</form:option>
-    </form:select>
+    <form:form action="test_proc" method="post" modelAttribute="data">
+        num1 : <form:radiobutton path="num1" value="true"/> true
+               <form:radiobutton path="num1" value="false"/> false <br>
+               <form:errors path="num1"/><br>
 
-    <!-- 두 번째 셀렉트 박스 -->
-    <form:select path="s2">
-        <form:options items="${requestScope.li1}"/>
-    </form:select>
+        num2 : <form:radiobutton path="num2" value="true"/> true
+               <form:radiobutton path="num2" value="false"/> false <br>
+               <form:errors path="num2"/><br>
 
-    <form:select path="s3">
-        <form:options items="${requestScope.li2}"/>
-    </form:select>
+        num3 : <form:input path="num3" type="text"/><br>
+               <form:errors path="num3"/><br>
 
-    <form:select path="s4">
-        <form:options items="${requestScope.li3}" itemLabel="s1" itemValue="s2"/>
-    </form:select>
-    <br>
-    <!----------------------------------------------------->
-    <form:checkbox path="s5" value="d1"/>one
-    <form:checkbox path="s5" value="d2"/>two
-    <form:checkbox path="s5" value="d3"/>three <br>
+        num4 : <form:checkbox path="num4" value="check1"/>check1<br>
+               <form:errors path="num4"/><br>
 
-        <form:checkboxes items="${requestScope.li1}" path="s6"/><br>
-        <form:checkboxes items="${requestScope.li2}" path="s7"/><br>
-        <form:checkboxes items="${requestScope.li3}" itemLabel="s1" itemValue="s2" path="s8"/><br>
+        num5 : <form:checkbox path="num5" value="check2"/>check1<br>
+               <form:errors path="num5"/><br>
 
-        <form:radiobutton path="s9" value="d1"/>one
-        <form:radiobutton path="s9" value="d2"/>two
-        <form:radiobutton path="s9" value="d3"/>three <br>
+        num6 : <form:input path="num6" type="text"/><br>
+               <form:errors path="num6"/><br>
 
-        <form:radiobuttons path="s10" items="${requestScope.li1}"/><br>
-        <form:radiobuttons path="s11" items="${requestScope.li2}"/><br>
-        <form:radiobuttons path="s12" items="${requestScope.li3}" itemLabel="s1" itemValue="s2"/><br>
+        num7 : <form:input path="num7" type="text"/><br>
+               <form:errors path="num7"/><br>
 
-</form:form>
+        num8 : <form:input path="num8" type="text"/><br>
+               <form:errors path="num8"/><br>
+
+        <form:button type="submit">체크</form:button>
+    </form:form>
+
 
 </body>
 </html>

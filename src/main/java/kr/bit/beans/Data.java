@@ -1,116 +1,108 @@
 package kr.bit.beans;
 
 
+import javax.validation.constraints.*;
+
 public class Data {
 
-    private String s1;
-    private String s2;
-    private String s3;
-    private String s4;
+    @AssertTrue //true가 아닌 값이 들어오면 오류
+    private  boolean num1;
 
-    private String s5[];
-    private String s6[];
-    private String s7[];
-    private String s8[];
+    @AssertFalse //false가 아닌 값이 들어오면 오류
+    private  boolean num2;
 
-    private String s9;
-    private String s10;
-    private String s11;
-    private String s12;
+    @Max(200)
+    @Min(20)
+    private String num3;
 
-    public String getS1() {
-        return s1;
+    @Null   //값이 들어오면 오류
+    private String num4;
+
+    @NotNull    //값이 들어오지 않으면 오류
+    private String num5;
+
+    @Digits(integer = 3, fraction = 2)  //정수는 3, 실수 2자릿수
+    private String num6;
+
+    @Size(min=2, max=10)    //지정된 글자수보다 짧거나 길면 오류
+    private String num7;
+
+    @Pattern(regexp = "[a-zA-Z]*")
+    private String num8;
+
+    public Data(){
+        this.num1=true;
+        this.num2=false;
+        this.num3="50";
+        this.num4=null;
+        this.num5="spring";
+        this.num6="222.22";
+        this.num7="java";
     }
 
-    public void setS1(String s1) {
-        this.s1 = s1;
+    @AssertTrue
+    public boolean isNum1() {
+        return num1;
     }
 
-    public String getS2() {
-        return s2;
+    public void setNum1(@AssertTrue boolean num1) {
+        this.num1 = num1;
     }
 
-    public void setS2(String s2) {
-        this.s2 = s2;
+    @AssertFalse
+    public boolean isNum2() {
+        return num2;
     }
 
-    public String getS3() {
-        return s3;
+    public void setNum2(@AssertFalse boolean num2) {
+        this.num2 = num2;
     }
 
-    public void setS3(String s3) {
-        this.s3 = s3;
+    public @Max(200) @Min(20) String getNum3() {
+        return num3;
     }
 
-    public String getS4() {
-        return s4;
+    public void setNum3(@Max(200) @Min(20) String num3) {
+        this.num3 = num3;
     }
 
-    public void setS4(String s4) {
-        this.s4 = s4;
+    public @Null String getNum4() {
+        return num4;
     }
 
-    public String[] getS5() {
-        return s5;
+    public void setNum4(@Null String num4) {
+        this.num4 = num4;
     }
 
-    public void setS5(String[] s5) {
-        this.s5 = s5;
+    public @NotNull String getNum5() {
+        return num5;
     }
 
-    public String[] getS6() {
-        return s6;
+    public void setNum5(@NotNull String num5) {
+        this.num5 = num5;
     }
 
-    public void setS6(String[] s6) {
-        this.s6 = s6;
+    public @Digits(integer = 3, fraction = 2) String getNum6() {
+        return num6;
     }
 
-    public String[] getS7() {
-        return s7;
+    public void setNum6(@Digits(integer = 3, fraction = 2) String num6) {
+        this.num6 = num6;
     }
 
-    public void setS7(String[] s7) {
-        this.s7 = s7;
+    public @Size(min = 2, max = 10) String getNum7() {
+        return num7;
     }
 
-    public String[] getS8() {
-        return s8;
+    public void setNum7(@Size(min = 2, max = 10) String num7) {
+        this.num7 = num7;
     }
 
-    public void setS8(String[] s8) {
-        this.s8 = s8;
+    public @Pattern(regexp = "[a-zA-Z]*") String getNum8() {
+        return num8;
     }
 
-    public String getS9() {
-        return s9;
-    }
-
-    public void setS9(String s9) {
-        this.s9 = s9;
-    }
-
-    public String getS10() {
-        return s10;
-    }
-
-    public void setS10(String s10) {
-        this.s10 = s10;
-    }
-
-    public String getS11() {
-        return s11;
-    }
-
-    public void setS11(String s11) {
-        this.s11 = s11;
-    }
-
-    public String getS12() {
-        return s12;
-    }
-
-    public void setS12(String s12) {
-        this.s12 = s12;
+    public void setNum8(@Pattern(regexp = "[a-zA-Z]*") String num8) {
+        this.num8 = num8;
     }
 }

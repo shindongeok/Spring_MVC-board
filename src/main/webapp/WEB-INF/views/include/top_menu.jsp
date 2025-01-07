@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 
 <nav
-	class="navbar navbar-expand-md bg-dark text-white fixed-up shadow-lg">
+	class="navbar navbar-expand-md bg-dark text-white fixed-up shadow-lg", style="margin-bottom: 20px">
     <a class="navbar-brand" href="${root}main">spring1</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

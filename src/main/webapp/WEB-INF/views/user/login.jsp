@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
     <div class="container">
             <div style="width: 500px;">
                 <div class="card-body">
-                    <form:form action="${root}user/login_pro" method="post">
+                    <form:form action="${root}user/login_pro" method="post" modelAttribute="#">
                         <div class="form-group">
                             <form:label path="user_id">아이디</form:label>
                             <form:input type="text" path="user_id" class="form-control"/>

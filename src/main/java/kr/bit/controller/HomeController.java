@@ -12,8 +12,7 @@ public class HomeController {
     //http://localhost:8081/Java_Setting/
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String home(){   //핸들러 메소드
-        System.out.println("home");
-        return "index"; //jsp파일 /WEB-INF/views/index.jsp
+        return "redirect:/main"; //main.jsp를 첫 화면으로 설정
     }
 
 

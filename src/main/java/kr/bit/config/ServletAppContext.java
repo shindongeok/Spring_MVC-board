@@ -2,9 +2,14 @@ package kr.bit.config;
 
 
 
+import kr.bit.interceptor.TopMenuInterceptor;
+import kr.bit.mapper.TopMenuMapper;
+import kr.bit.service.TopMenuService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,7 +20,8 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 @EnableWebMvc
 @ComponentScan("kr.bit.controller")
-//@ComponentScan("kr.bit.beans")
+@ComponentScan("kr.bit.dao")
+@ComponentScan("kr.bit.service")
 @PropertySource("/WEB-INF/properties/db.properties")
 public class ServletAppContext implements WebMvcConfigurer {
 
@@ -31,6 +37,10 @@ public class ServletAppContext implements WebMvcConfigurer {
 
     @Value("${db.password}")
     private String db_password;
+
+    //인터셉터를하기위해 서비스 주입
+    @Autowired
+    private TopMenuService topMenuService;
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -63,15 +73,15 @@ public class ServletAppContext implements WebMvcConfigurer {
         return factory; //sql실행, 매핑 인터페이스 처리
     }
 
-//    //mybatis 인터페이스 스프링에 빈으로 등록
-//    @Bean
-//    public MapperFactoryBean<MapperInterface> test_mapper(SqlSessionFactory factory) throws Exception{
-//        MapperFactoryBean<MapperInterface> fac =
-//                new MapperFactoryBean<MapperInterface>(MapperInterface.class);
-//
-//        fac.setSqlSessionFactory(factory);
-//        return fac;
-//    }
+    //mybatis 인터페이스 스프링에 빈으로 등록
+    @Bean
+    public MapperFactoryBean<TopMenuMapper> test_mapper(SqlSessionFactory factory) throws Exception{
+        MapperFactoryBean<TopMenuMapper> fac =
+                new MapperFactoryBean<TopMenuMapper>(TopMenuMapper.class);
+
+        fac.setSqlSessionFactory(factory);
+        return fac;
+    }
 
 
 
@@ -84,9 +94,16 @@ public class ServletAppContext implements WebMvcConfigurer {
 //        return res;
 //    }
 
-//    //인터셉터 등록 -  경로와 인터셉터 설정하기 위해
-//    public void addInterceptors(InterceptorRegistry registry){
-//        WebMvcConfigurer.super.addInterceptors(registry);
+    //인터셉터 등록 -  경로와 인터셉터 설정하기 위해
+    public void addInterceptors(InterceptorRegistry registry) {
+        WebMvcConfigurer.super.addInterceptors(registry);
+
+        TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(topMenuService);
+        InterceptorRegistration re1=registry.addInterceptor(topMenuInterceptor);
+        re1.addPathPatterns("/**"); //모든경로로 매핑해도 다 뜨도록... 컨트롤러 전에 preHandle
+
+
+    }
 //
 //
 //        Inter1 inter1 = new Inter1();

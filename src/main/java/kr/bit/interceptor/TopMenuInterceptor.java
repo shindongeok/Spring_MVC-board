@@ -11,6 +11,7 @@ import java.util.List;
 
 public class TopMenuInterceptor implements HandlerInterceptor {
 
+    //화면에 서비스를 주입
     private TopMenuService topMenuService;
 
     public TopMenuInterceptor(TopMenuService topMenuService){

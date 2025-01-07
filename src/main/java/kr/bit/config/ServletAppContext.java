@@ -4,6 +4,7 @@ package kr.bit.config;
 
 import kr.bit.interceptor.TopMenuInterceptor;
 import kr.bit.mapper.TopMenuMapper;
+import kr.bit.mapper.UserMapper;
 import kr.bit.service.TopMenuService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,6 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
@@ -75,7 +78,7 @@ public class ServletAppContext implements WebMvcConfigurer {
 
     //mybatis 인터페이스 스프링에 빈으로 등록
     @Bean
-    public MapperFactoryBean<TopMenuMapper> test_mapper(SqlSessionFactory factory) throws Exception{
+    public MapperFactoryBean<TopMenuMapper> top_mapper(SqlSessionFactory factory) throws Exception{
         MapperFactoryBean<TopMenuMapper> fac =
                 new MapperFactoryBean<TopMenuMapper>(TopMenuMapper.class);
 
@@ -83,16 +86,30 @@ public class ServletAppContext implements WebMvcConfigurer {
         return fac;
     }
 
+    @Bean
+    public MapperFactoryBean<UserMapper> user_mapper(SqlSessionFactory factory) throws  Exception{
+        MapperFactoryBean<UserMapper> fac =
+                new MapperFactoryBean<UserMapper>(UserMapper.class);
+
+        fac.setSqlSessionFactory(factory);
+        return fac;
+    }
 
 
-//    //properties파일에 있는 값을 뷰에 출력하기 위해서
-//    @Bean(name="messageSource")
-//    public ReloadableResourceBundleMessageSource messageSource(){
-//        ReloadableResourceBundleMessageSource res=new ReloadableResourceBundleMessageSource();
-//        res.setDefaultEncoding("UTF-8");
-//        res.setBasenames("/WEB-INF/properties/error");
-//        return res;
-//    }
+    //properties파일에 있는 값을 뷰에 출력하기 위해서
+    @Bean(name="messageSource")
+    public ReloadableResourceBundleMessageSource messageSource(){
+        ReloadableResourceBundleMessageSource res=new ReloadableResourceBundleMessageSource();
+        res.setDefaultEncoding("UTF-8");
+        res.setBasenames("/WEB-INF/properties/error");
+        return res;
+    }
+
+    //벨류값 읽어드릴 때 필요할때도 있다.(드라이브가 에러나서)
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
     //인터셉터 등록 -  경로와 인터셉터 설정하기 위해
     public void addInterceptors(InterceptorRegistry registry) {

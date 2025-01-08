@@ -28,13 +28,14 @@ pageEncoding="UTF-8"%>
         </table>
 
         <div class="text-right">
-            <a href="#" class="btn btn-primary">글쓰기</a>
+            <a href="${root}board/write?board_info_idx=${board_info_idx}" class="btn btn-primary">글쓰기</a>
         </div>
     </div>
 
-
+<!-- board_info_idx -->
+${board_info_idx}
     <c:import url="/WEB-INF/views/include/bottom_menu.jsp"/>
 
-      ${board_info_idx}
+
 </body>
 </html>

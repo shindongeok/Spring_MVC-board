@@ -19,4 +19,16 @@ public class UserDao {
         return userMapper.getLoginUser(loginProBean);
 
     }
+
+    public String existId(String user_id){
+        return userMapper.existId(user_id);
+    }
+
+    public User getModifyUser(int user_idx){
+        return userMapper.getModifyUser(user_idx);
+    }
+
+    public void modifyUser(User modifyBean){
+        userMapper.modifyUser(modifyBean);
+    }
 }

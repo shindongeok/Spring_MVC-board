@@ -15,11 +15,11 @@ public class User {
     @Pattern(regexp = "[가-힣]*")     // 한글만 가능
     private String user_name;
 
-    @Size(min=4, max=10)
+    @Size(min=4, max=10, message = "작성해주세요?")
     @Pattern(regexp = "[a-zA-Z0-9]*")   // 영어와 숫자만 가능
     private String user_id;
 
-    @Size(min=4, max=10)
+    @Size(min=4, max=10, message = "작성해주세요?")
     @Pattern(regexp = "[a-zA-Z0-9]*")
     private String user_pw;
 

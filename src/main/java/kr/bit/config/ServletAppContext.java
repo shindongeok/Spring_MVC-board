@@ -2,6 +2,8 @@ package kr.bit.config;
 
 
 
+import kr.bit.beans.User;
+import kr.bit.interceptor.LoginInterceptor;
 import kr.bit.interceptor.TopMenuInterceptor;
 import kr.bit.mapper.TopMenuMapper;
 import kr.bit.mapper.UserMapper;
@@ -19,6 +21,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.*;
+
+import javax.annotation.Resource;
 
 @Configuration
 @EnableWebMvc
@@ -44,6 +48,11 @@ public class ServletAppContext implements WebMvcConfigurer {
     //인터셉터를하기위해 서비스 주입
     @Autowired
     private TopMenuService topMenuService;
+
+
+    //로그인 여부에 따라 상단메뉴바가 다르게 보이도록 하기위해 주입받음
+    @Resource(name="loginBean")
+    private User loginBean;
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -115,9 +124,18 @@ public class ServletAppContext implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         WebMvcConfigurer.super.addInterceptors(registry);
 
-        TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(topMenuService);
+        TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(topMenuService, loginBean);
         InterceptorRegistration re1=registry.addInterceptor(topMenuInterceptor);
         re1.addPathPatterns("/**"); //모든경로로 매핑해도 다 뜨도록... 컨트롤러 전에 preHandle
+
+        LoginInterceptor loginInterceptor = new LoginInterceptor(loginBean);
+        InterceptorRegistration re2 = registry.addInterceptor(loginInterceptor);
+
+        //권한이 없다면 관련된 url로 진입 불가
+        re2.addPathPatterns("/user/modify", "/user/logout", "/board/*");
+        // 제외해서 필요한것은 권한 없어도 진입 가능!
+        re2.excludePathPatterns("/board/main");
+        //이 주소로 들어가기 전에 로그인 여부를 알아내서 로그인이 x라면 user/not_login을 강제 이동
 
 
     }

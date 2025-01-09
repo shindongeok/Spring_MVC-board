@@ -5,8 +5,11 @@ package kr.bit.config;
 import kr.bit.beans.User;
 import kr.bit.interceptor.LoginInterceptor;
 import kr.bit.interceptor.TopMenuInterceptor;
+import kr.bit.interceptor.WriterInterceptor;
+import kr.bit.mapper.BoardMapper;
 import kr.bit.mapper.TopMenuMapper;
 import kr.bit.mapper.UserMapper;
+import kr.bit.service.BoardService;
 import kr.bit.service.TopMenuService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -49,6 +52,9 @@ public class ServletAppContext implements WebMvcConfigurer {
     @Autowired
     private TopMenuService topMenuService;
 
+    @Autowired
+    private BoardService boardService;
+
 
     //로그인 여부에 따라 상단메뉴바가 다르게 보이도록 하기위해 주입받음
     @Resource(name="loginBean")
@@ -86,6 +92,7 @@ public class ServletAppContext implements WebMvcConfigurer {
     }
 
     //mybatis 인터페이스 스프링에 빈으로 등록
+    //TopMenuMapper 메퍼등록
     @Bean
     public MapperFactoryBean<TopMenuMapper> top_mapper(SqlSessionFactory factory) throws Exception{
         MapperFactoryBean<TopMenuMapper> fac =
@@ -95,6 +102,7 @@ public class ServletAppContext implements WebMvcConfigurer {
         return fac;
     }
 
+    //UserMapper 메퍼등록
     @Bean
     public MapperFactoryBean<UserMapper> user_mapper(SqlSessionFactory factory) throws  Exception{
         MapperFactoryBean<UserMapper> fac =
@@ -104,6 +112,15 @@ public class ServletAppContext implements WebMvcConfigurer {
         return fac;
     }
 
+    //BoardMapper 메퍼등록
+    @Bean
+    public MapperFactoryBean<BoardMapper> board_mapper(SqlSessionFactory factory) throws  Exception{
+        MapperFactoryBean<BoardMapper> fac =
+                new MapperFactoryBean<BoardMapper>(BoardMapper.class);
+
+        fac.setSqlSessionFactory(factory);
+        return fac;
+    }
 
     //properties파일에 있는 값을 뷰에 출력하기 위해서
     @Bean(name="messageSource")
@@ -136,6 +153,10 @@ public class ServletAppContext implements WebMvcConfigurer {
         // 제외해서 필요한것은 권한 없어도 진입 가능!
         re2.excludePathPatterns("/board/main");
         //이 주소로 들어가기 전에 로그인 여부를 알아내서 로그인이 x라면 user/not_login을 강제 이동
+
+        WriterInterceptor writerInterceptor = new WriterInterceptor(loginBean, boardService);
+        InterceptorRegistration re3=registry.addInterceptor(writerInterceptor);
+        re3.addPathPatterns("/board/modify","/board/delete");
 
 
     }

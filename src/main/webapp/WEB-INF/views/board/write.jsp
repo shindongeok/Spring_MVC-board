@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <head>
-    <title>회원가입 입니다..</title>
+    <title>boardWrite입니다.</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery를 먼저 로드!! -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -18,8 +18,8 @@ pageEncoding="UTF-8"%>
             <div style="width: 1000px;">
                 <div class="card-body">
                     <form:form action="${root}board/write_pro" method="post" modelAttribute="writeBean">
-                        <!-- 값을 같이 넘겨주고싶어서(넣어 놔야지 서버에서 아이디가 있는지 없는지 확인가능) -->
-
+                        <!-- 값을 같이 넘겨주고싶어서(넣어 놔야지 서버에서 board_idx 값을 확인가능) -->
+                        <form:hidden path="content_board_idx"/>
                         <div class="form-group">
                             <form:label path="content_subject">제목</form:label>
                             <form:input type="text" path="content_subject" class="form-control"/>

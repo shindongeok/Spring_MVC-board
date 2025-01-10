@@ -1,9 +1,7 @@
 package kr.bit.dao;
 
-import kr.bit.beans.BoardInfo;
 import kr.bit.beans.Content;
 import kr.bit.mapper.BoardMapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,9 +15,9 @@ public class BoardDao {
     private BoardMapper boardMapper;
 
     public void addContent(Content writeContentBean){
-//        for(int i=0;i<242; i++){
+        for(int i=0;i<242; i++){
             boardMapper.addContent(writeContentBean);
-//        }
+        }
 
     }
 

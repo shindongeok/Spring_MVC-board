@@ -47,7 +47,7 @@ pageEncoding="UTF-8"%>
                 <!-- 로그인 한 사람이 본인글을 쓰고 제목 클릭하면 목록,수정, 삭제 가 다 뜨지만 아닌경우는 목록만뜸 -->
                     <c:if test="${loginBean.user_idx == readContent.content_writer_idx}">
                         <a class="btn btn-info" href="${root}board/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}">수정</a>
-                        <a class="btn btn-danger" href="${root}boar/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}">삭제</a>
+                        <a class="btn btn-danger" href="${root}boar/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}">삭제</a>
                     </c:if>
 
                 </div>

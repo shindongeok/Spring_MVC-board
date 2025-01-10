@@ -21,6 +21,7 @@ pageEncoding="UTF-8"%>
                     <!-- 값을 같이 넘겨주고싶어서(넣어 놔야지 서버에서 board_idx 값을 확인가능) -->
                     <form:hidden path="content_board_idx"/>
                     <form:hidden path="content_idx"/>
+                    <input type="hidden" name="page" value="${page}"/>
                     <div class="form-group">
                         <form:label path="content_writer_name">글쓴이</form:label>
                         <form:input readonly="true" path="content_writer_name" class="form-control"/>

@@ -17,9 +17,13 @@ public class BoardDao {
     private BoardMapper boardMapper;
 
     public void addContent(Content writeContentBean){
-        boardMapper.addContent(writeContentBean);
+//        for(int i=0;i<242; i++){
+            boardMapper.addContent(writeContentBean);
+//        }
+
     }
 
+    //게시판 이름조회
     public String getBoardInfoName(int board_info_idx){
         return boardMapper.getBoardInfoName(board_info_idx);
     }
@@ -28,6 +32,7 @@ public class BoardDao {
     //RowBounds : mybatis 에서 제공하는 페이징 처리 도구
     //getOffset(시작위치), getLimit(조회할 데이터 수)
     //예) RowBounds rowBounds = new RowBounds(0,5);
+    //게시글 목록 조회
     public List<Content> getContent(int board_info_idx, RowBounds rowBounds){
         return boardMapper.getContent(board_info_idx,rowBounds.getOffset(), rowBounds.getLimit());
     }
@@ -47,5 +52,9 @@ public class BoardDao {
         boardMapper.deleteInfo(content_idx);
     }
 
-
+    //페이징===========================================================================================
+    //페이지 처리를 위해 특정 게시판의 리스트 수 조회하기
+    public int getCnt(int content_board_idx){
+        return boardMapper.getCnt(content_board_idx);
+    }
 }

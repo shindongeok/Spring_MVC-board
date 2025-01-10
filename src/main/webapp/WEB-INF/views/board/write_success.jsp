@@ -5,5 +5,5 @@ pageEncoding="UTF-8"%>
 <script>
     alert("작성 완료!!")
     //필요한 값을 가지고 넘어간다!!(content_board_idx / content_idx / page)
-    location.href='${root}board/read?board_info_idx=${writeBean.content_board_idx}&content_idx=${writeBean.content_idx}&page=1'
+    location.href="${root}board/read?board_info_idx=${writeBean.content_board_idx}&content_idx=${writeBean.content_idx}&page=1"
 </script>

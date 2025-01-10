@@ -3,6 +3,7 @@ package kr.bit.mapper;
 
 import kr.bit.beans.BoardInfo;
 import kr.bit.beans.Content;
+import kr.bit.beans.Page;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -31,7 +32,8 @@ public interface BoardMapper {
             "where a1.content_board_idx = #{board_info_idx} " +
             "order by a1.content_idx desc " +
             "limit #{offset}, #{limit}")
-    List<Content> getContent(@Param("board_info_idx") int board_info_idx,@Param("offset") int offset,@Param("limit") int limit);
+    List<Content> getContent(@Param("board_info_idx") int board_info_idx,
+                             @Param("offset") int offset,@Param("limit") int limit);
 
     //content_writer_idx = user_name랑 비교하기위해 조회했다.
     //특정 게시글 조회
@@ -43,14 +45,29 @@ public interface BoardMapper {
             "where a1.content_idx =#{content_idx}")
     Content getInfo(int content_idx);
 
-    //특정 게시글 수정 업데이트!!
-    @Update("UPDATE content_table" +
-            "SET content_subject = #{content_subject}, content_text = #{content_text}" +
+////    //특정 게시글 수정 업데이트!!
+//    @Update("UPDATE content_table" +
+//            "SET content_subject = #{content_subject}, content_text = #{content_text}" +
+//            "WHERE content_idx = #{content_idx}")
+//    void modifyInfo(Content modifyBean);    //컨텐트를 업데이트하는거라 객체로 메개변수?
+
+    @Update("UPDATE content_table " +
+            "SET content_subject = #{content_subject}, content_text = #{content_text} " +
             "WHERE content_idx = #{content_idx}")
-    void modifyInfo(Content modifyBean);    //컨텐트를 업데이트하는거라 객체로 메개변수?
+    void modifyInfo(Content modifyBean);
+
 
     //특정 게시글 삭제
     @Delete("delete from content_table " +
             "where content_idx=#{content_idx}")
     void deleteInfo(int content_idx);
+
+    //*페이징================================================================================
+    //페이지 처리를 위해 특정 게시판의 리스트 수 조회하기
+    @Select("select COUNT(*) " +
+            "from content_table " +
+            "where content_board_idx = #{content_board_idx}")
+    int getCnt(int content_board_idx);
+
+    //전체 게시글 수 조회
 }
